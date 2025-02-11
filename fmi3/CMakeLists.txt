@@ -270,7 +270,6 @@ if (FMU_TESTING)
 
         add_custom_command(TARGET ${FMU_MODEL_IDENTIFIER} POST_BUILD
                            COMMAND ${CMAKE_COMMAND} -P "${CMAKE_BINARY_DIR}/fmusim/fmusim_${FMU_MODEL_IDENTIFIER}.cmake"
-                           DEPENDS "${FMU_DIRECTORY}/${FMU_MODEL_IDENTIFIER}.fmu"
                            COMMENT "Running fmusim wrapper\n")
     else()
         message(STATUS "${FMU_MSG_PREFIX}Testing not possible on current platform. Available only for: ${TESTING_ENABLED_OS}")
