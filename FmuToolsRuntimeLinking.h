@@ -91,10 +91,17 @@ std::string GetLibraryLocation() {
         std::cerr << "Error getting the FMU shared library handle. Error code: " << GetLastError() << std::endl;
     }
 #else
-    void* sym_ptr = dlsym(RTLD_DEFAULT, "fmi2DoStep");
-    if (sym_ptr == NULL) {
-        std::cout << "Warning: FmuToolsRuntimeLinking: sym_ptr to fmi2DoStep is Null" << std::endl;
+    void* sym_ptr = nullptr;
+
+    // Check first if FMI2 then if FMI3
+    sym_ptr = dlsym(RTLD_DEFAULT, "fmi2DoStep");
+    if (sym_ptr == nullptr) {
+        sym_ptr = dlsym(RTLD_DEFAULT, "fmi3DoStep");
     }
+    if (sym_ptr == nullptr) {
+        std::cerr << "Error: FmuToolsRuntimeLinking: cannot find either fmi2DoStep nor fmi3DoStep" << std::endl;
+    }
+
     Dl_info dl_info;
     if (dladdr(sym_ptr, &dl_info)) {
         char library_pathc[PATH_MAX];
