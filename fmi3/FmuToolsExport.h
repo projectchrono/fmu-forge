@@ -447,12 +447,12 @@ class FmuComponentBase {
                                                 fmi3Boolean* valuesOfContinuousStatesChanged,
                                                 fmi3Boolean* nextEventTimeDefined,
                                                 fmi3Float64* nextEventTime) {
-        discreteStatesNeedUpdate = fmi3False;
-        terminateSimulation = fmi3False;
-        nominalsOfContinuousStatesChanged = fmi3False;
-        valuesOfContinuousStatesChanged = fmi3False;
-        nextEventTimeDefined = fmi3False;
-        nextEventTime = 0;
+        *discreteStatesNeedUpdate = fmi3False;
+        *terminateSimulation = fmi3False;
+        *nominalsOfContinuousStatesChanged = fmi3False;
+        *valuesOfContinuousStatesChanged = fmi3False;
+        *nextEventTimeDefined = fmi3False;
+        *nextEventTime = 0;
 
         return fmi3Status::fmi3OK;
     }
@@ -467,7 +467,7 @@ class FmuComponentBase {
         if (is_cosimulation_available())
             throw std::runtime_error("An FMU for co-simulation must implement doStepIMPL");
 
-        return fmi3OK;
+        return fmi3Status::fmi3OK;
     }
 
     virtual fmi3Status completedIntegratorStepIMPL(fmi3Boolean noSetFMUStatePriorToCurrentPoint,
