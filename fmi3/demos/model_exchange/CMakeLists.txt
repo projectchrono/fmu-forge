@@ -77,6 +77,7 @@ source_group("" FILES ${DEMO_SOURCES})
 add_executable(${DEMO} ${DEMO_SOURCES})
 
 target_include_directories(${DEMO} PRIVATE "${CMAKE_SOURCES_DIR}")
+target_include_directories(${DEMO} PRIVATE "${FMU_TOOLS_DIR}")
 target_compile_definitions(${DEMO} PUBLIC FMU_UNPACK_DIRECTORY="${FMU_DIRECTORY}/tmp_unpack")
 target_compile_definitions(${DEMO} PUBLIC FMU_DIRECTORY="${FMU_DIRECTORY}")
 target_compile_definitions(${DEMO} PUBLIC FMU_FILENAME="${FMU_FILENAME}")

@@ -150,7 +150,7 @@ message(STATUS "${FMU_MSG_PREFIX}   append FMU sources to '${FMU_MODEL_IDENTIFIE
 
 add_library(${FMU_MODEL_IDENTIFIER} SHARED ${FMU_SOURCES})
 
-target_include_directories(${FMU_MODEL_IDENTIFIER} PRIVATE "${CMAKE_SOURCES_DIR}")
+target_include_directories(${FMU_MODEL_IDENTIFIER} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/..")
 target_compile_definitions(${FMU_MODEL_IDENTIFIER} PUBLIC FMU_MODEL_IDENTIFIER="${FMU_MODEL_IDENTIFIER}")
 target_compile_definitions(${FMU_MODEL_IDENTIFIER} PRIVATE FMU_GUID="${FMU_GUID}")
 

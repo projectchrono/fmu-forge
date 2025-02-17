@@ -6,12 +6,11 @@ project(fmu_tools)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 mark_as_advanced(FORCE CMAKE_INSTALL_PREFIX)
 
-# -------------------------------------------------
-# Set FMU_TOOLS_DIR to point to the location of this script
-# (in this case, this is the top-level fmu_tools directory)
+# # -------------------------------------------------
+# # Set FMU_TOOLS_DIR to point to the location of this script
+# # (in this case, this is the top-level fmu_tools directory)
 
 set(FMU_TOOLS_DIR ${CMAKE_SOURCE_DIR})
-include_directories(${FMU_TOOLS_DIR})
 
 # -------------------------------------------------
 # Add the various demo subdirectories
