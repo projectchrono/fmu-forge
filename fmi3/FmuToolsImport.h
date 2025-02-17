@@ -351,7 +351,7 @@ class FmuUnit {
 
   protected:
     std::string modelName;
-    std::string guid;
+    std::string instantiationToken;
     std::string fmiVersion;
     std::string description;
     std::string generationTool;
@@ -585,8 +585,8 @@ void FmuUnit::LoadXML() {
     if (auto attr = root_node->first_attribute("modelName")) {
         modelName = attr->value();
     }
-    if (auto attr = root_node->first_attribute("guid")) {
-        guid = attr->value();
+    if (auto attr = root_node->first_attribute("instantiationToken")) {
+        instantiationToken = attr->value();
     }
     if (auto attr = root_node->first_attribute("fmiVersion")) {
         fmiVersion = attr->value();
@@ -1047,7 +1047,7 @@ void FmuUnit::Instantiate(const std::string& instanceName,
 
     if (m_fmuType == FmuType::MODEL_EXCHANGE) {
         instance = _fmi3InstantiateModelExchange(instanceName.c_str(),            // instanceName
-                                                 guid.c_str(),                    // instantiationToken
+                                                 instantiationToken.c_str(),      // instantiationToken
                                                  resource_dir.c_str(),            // resourcePath
                                                  visible ? fmi3True : fmi3False,  // visible
                                                  logging,                         // loggingOn
@@ -1061,7 +1061,7 @@ void FmuUnit::Instantiate(const std::string& instanceName,
         fmi3ValueReference requiredIntermediateVariables[nRequiredIntermediateVariables];
 
         instance = _fmi3InstantiateCoSimulation(instanceName.c_str(),            // instanceName
-                                                guid.c_str(),                    // instantiationToken
+                                                instantiationToken.c_str(),      // instantiationToken
                                                 resource_dir.c_str(),            // resourcePath
                                                 visible ? fmi3True : fmi3False,  // visible
                                                 logging,                         // loggingOn
@@ -1074,7 +1074,7 @@ void FmuUnit::Instantiate(const std::string& instanceName,
                                                 intermediate_update_callback);   // intermediateUpdate
     } else if (m_fmuType == FmuType::SCHEDULED_EXECUTION) {
         instance = _fmi3InstantiateScheduledExecution(instanceName.c_str(),            // instance name
-                                                      guid.c_str(),                    // guid
+                                                      instantiationToken.c_str(),      // instantiationToken
                                                       resource_dir.c_str(),            // resource dir
                                                       visible ? fmi3True : fmi3False,  // visible
                                                       logging,                         // logging
