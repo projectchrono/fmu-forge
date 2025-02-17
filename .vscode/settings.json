@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "*.oml": "matlab",
-        "*.mof": "modelica",
-        "unordered_map": "cpp",
-        "typeindex": "cpp"
-    }
-}
