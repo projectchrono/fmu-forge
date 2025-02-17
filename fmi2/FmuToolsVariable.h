@@ -303,10 +303,8 @@ class FmuVariable {
                 break;
             default:
                 throw std::runtime_error("Type_toString: received bad type.");
-
                 break;
         }
-        return "";
     }
 
     const inline std::string& GetName() const { return m_name; }
