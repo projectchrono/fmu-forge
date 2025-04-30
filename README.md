@@ -1,5 +1,5 @@
 # Fmu Tools
-The `fmu_tools` library offers a set of utilities to import/export any existing model from/into an FMU (version 2.0 or 3.0).
+The `fmu-forge` library offers a set of utilities to import/export any existing model from/into an FMU (version 2.0 or 3.0).
 
 For the FMU export, the library, mainly through its main class `FmuComponentBase`, provides a higher C++ layer that:
 - on the outer side: offers to the final user the standard FMU interface 
@@ -23,7 +23,7 @@ WARNING: please mind that we are currently dealing only with **CoSimulation** FM
 
 A simple use of the library consists in just taking the project and modifying _myFmuComponent.h_ and _myFmuComponent.cpp_ based on the user needs. This is the recommended way for simpler projects.
 
-Those who like to use `fmu_tools` directly from their own projects are invited to look at the [Chrono](https://github.com/projectchrono/chrono) library to have an idea on a more advanced integration. Especially the [chrono/template_project_fmu](https://github.com/projectchrono/chrono/tree/main/template_project_fmu) folder.
+Those who like to use `fmu-forge` directly from their own projects are invited to look at the [Chrono](https://github.com/projectchrono/chrono) library to have an idea on a more advanced integration. Especially the [chrono/template_project_fmu](https://github.com/projectchrono/chrono/tree/main/template_project_fmu) folder.
 
 In either case, this library offers a set of tools that need to be further specialized for the user-specific problem. This is done by inheriting from `FmuComponentBase`, plus some additional customization. One example is provided by the `myFmuComponent` class. The impatient user could also just copy and modify this class straight away.
 
@@ -109,7 +109,7 @@ The FMUs gets automatically unzipped.
 - [x] test on Win
 - [x] test on Linux (GCC8.5.0)
 - [ ] test on MacOS
-- [x] importing `fmu_tools` into other project
+- [x] importing `fmu-forge` into other project
 
 
 ## Developer Guide

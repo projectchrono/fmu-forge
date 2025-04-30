@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -18,7 +18,7 @@
 
 #include "FmuToolsRuntimeLinking.h"
 
-using namespace fmu_tools;
+using namespace fmu_forge;
 
 int main(int argc, char* argv[]) {
     std::string dynlib_fullpath;

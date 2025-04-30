@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -21,7 +21,7 @@
 
 #include "rapidxml/rapidxml_ext.hpp"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi2 {
 
 const std::unordered_set<UnitDefinition, UnitDefinition::Hash> common_unitdefinitions = {
@@ -896,13 +896,13 @@ void FmuComponentBase::sendToLog(std::string msg, fmi2Status status, std::string
 }
 
 }  // namespace fmi2
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 // =============================================================================
 // FMU FUNCTIONS
 // =============================================================================
 
-using namespace fmu_tools::fmi2;
+using namespace fmu_forge::fmi2;
 
 fmi2Component fmi2Instantiate(fmi2String instanceName,
                               fmi2Type fmuType,

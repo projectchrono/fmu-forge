@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -10,14 +10,14 @@
 // in the LICENSE file at the top level of the distribution.
 //
 // =============================================================================
-// Modelica wrappers to fmu_tools FMU import classes for FMI standard 2.0
+// Modelica wrappers to fmu-forge FMU import classes for FMI standard 2.0
 // =============================================================================
 
 #pragma once
 
 #include "fmi2/FmuToolsImport.h"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi2 {
 
 /// Class holding a set of scalar variables for the coordinate system of a visualizer in the FMU.
@@ -161,4 +161,4 @@ void FmuModelicaUnit::BuildVisualizersList(FmuVariableTreeNode* mynode) {
 }
 
 }  // namespace fmi2
-}  // namespace fmu_tools
+}  // namespace fmu_forge

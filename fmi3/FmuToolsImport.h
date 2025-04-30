@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -30,10 +30,10 @@
 #include "FmuToolsImportCommon.h"
 #include "fmi3/FmuToolsVariable.h"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi3 {
 
-/// @addtogroup fmu_tools_fmi3
+/// @addtogroup fmu_forge_fmi3
 /// @{
 
 #define LOAD_FMI_FUNCTION(funcName)                                                                    \
@@ -1685,7 +1685,7 @@ fmi3Status FmuUnit::GetVariable(fmi3ValueReference vr, std::vector<std::string>&
     return status;
 }
 
-/// @} fmu_tools_fmi3
+/// @} fmu_forge_fmi3
 
 }  // namespace fmi3
-}  // namespace fmu_tools
+}  // namespace fmu_forge

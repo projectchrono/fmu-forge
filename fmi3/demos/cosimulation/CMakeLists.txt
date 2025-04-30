@@ -31,7 +31,7 @@ include(FetchContent)
 #--------------------------------------------------------------
 
 message(STATUS "...add ${COMPONENT_NAME}")
-message(STATUS "   FetchContent(fmu_tools) from ${FMU_TOOLS_DIR}")
+message(STATUS "   FetchContent(fmu-forge) from ${FMU_FORGE_DIR}")
 
 set(FMU_MODEL_IDENTIFIER "${COMPONENT_NAME}" CACHE INTERNAL "")
 set(FMU_RESOURCES_DIRECTORY ${COMPONENT_RESOURCES_DIR})
@@ -41,7 +41,7 @@ set(FMU_MSG_PREFIX "   - ")
 
 FetchContent_Declare(
     ${FMU_MODEL_IDENTIFIER}
-    SOURCE_DIR ${FMU_TOOLS_DIR}/fmi3
+    SOURCE_DIR ${FMU_FORGE_DIR}/fmi3
 )
 
 FetchContent_MakeAvailable(${FMU_MODEL_IDENTIFIER})
@@ -75,7 +75,7 @@ source_group("" FILES ${DEMO_SOURCES})
 add_executable(${DEMO} ${DEMO_SOURCES})
 
 target_include_directories(${DEMO} PRIVATE "${CMAKE_SOURCES_DIR}")
-target_include_directories(${DEMO} PRIVATE "${FMU_TOOLS_DIR}")
+target_include_directories(${DEMO} PRIVATE "${FMU_FORGE_DIR}")
 target_compile_definitions(${DEMO} PUBLIC FMU_UNPACK_DIRECTORY="${FMU_DIRECTORY}/tmp_unpack")
 target_compile_definitions(${DEMO} PUBLIC FMU_DIRECTORY="${FMU_DIRECTORY}")
 target_compile_definitions(${DEMO} PUBLIC FMU_FILENAME="${FMU_FILENAME}")

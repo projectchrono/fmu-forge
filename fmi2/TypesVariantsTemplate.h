@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -21,7 +21,7 @@
 #include "variant/variant_guard.hpp"
 #include "fmi2/fmi2TypesPlatformCustom.h"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi2 {
 
 #define FMITYPESPLATFORM_DEFAULT
@@ -44,6 +44,6 @@ using FmuVariableBindType = varns::variant<fmi2Real*,
 using FmuVariableStartType = varns::variant<fmi2Real, fmi2Integer, fmi2Boolean, std::string>;
 
 }  // namespace fmi2
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

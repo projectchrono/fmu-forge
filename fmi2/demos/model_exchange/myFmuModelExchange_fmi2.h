@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for model exchange (FMI 2.0 standard)
-// Illustrates the FMU exporting capabilities in fmu_tools (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
 // =============================================================================
 
 #pragma once
@@ -23,7 +23,7 @@
 // #define FMI2_FUNCTION_PREFIX MyModel_
 #include "fmi2/FmuToolsExport.h"
 
-class myFmuComponent : public fmu_tools::fmi2::FmuComponentBase {
+class myFmuComponent : public fmu_forge::fmi2::FmuComponentBase {
   public:
     myFmuComponent(fmi2String instanceName,
                    fmi2Type fmuType,

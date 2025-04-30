@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -18,9 +18,9 @@
 
 #include <string>
 
-namespace fmu_tools {
+namespace fmu_forge {
 
-/// @addtogroup fmu_tools
+/// @addtogroup fmu_forge
 /// @{
 
 /// Definition of an FMI unit.
@@ -75,8 +75,8 @@ static const UnitDefinition UD_N("N", 1, 1, -2, 0, 0, 0, 0, 0);
 static const UnitDefinition UD_Nm("Nm", 1, 2, -2, 0, 0, 0, 0, 0);
 static const UnitDefinition UD_N_m2("N/m2", 1, -1, -2, 0, 0, 0, 0, 0);
 
-/// @} fmu_tools
+/// @} fmu_forge
 
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

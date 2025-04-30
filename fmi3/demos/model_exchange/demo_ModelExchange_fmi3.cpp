@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU instantiation for model exchange (FMI 3.0 standard)
-// Illustrates the FMU importing capabilities in fmu_tools (FmuToolsImport.h)
+// Illustrates the FMU importing capabilities in fmu-forge (FmuToolsImport.h)
 // =============================================================================
 
 #include <iostream>
@@ -20,7 +20,7 @@
 
 #include "fmi3/FmuToolsImport.h"
 
-using namespace fmu_tools::fmi3;
+using namespace fmu_forge::fmi3;
 
 std::string unzipped_fmu_folder = FMU_UNPACK_DIRECTORY;
 
