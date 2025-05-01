@@ -1,4 +1,5 @@
-# Fmu Tools
+# FMU-FORGE
+
 The `fmu-forge` library offers a set of utilities to import/export any existing model from/into an FMU (version 2.0 or 3.0).
 
 For the FMU export, the library, mainly through its main class `FmuComponentBase`, provides a higher C++ layer that:
