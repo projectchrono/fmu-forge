@@ -70,8 +70,10 @@ DYNLIB_HANDLE RuntimeLinkLibrary(const std::string& dynlib_dir, const std::strin
 #else
     void* dlib = dlopen(dynlib_name.c_str(), RTLD_LAZY);
     if (dlib == NULL) {
-        std::cerr << " ERROR: dynamic library " << dynlib_name << " did not load:\n";
-        std::cerr << dlerror() << std::endl;
+        std::cerr << "ERROR: DLL directory is found, but cannot load the library: " << dynlib_name << std::endl;
+        std::string message = dlerror();
+        std::cerr << "dlerror returned: " << message << std::endl;
+        throw std::runtime_error("Could not load the library.");
     }
     return dlib;
 #endif
