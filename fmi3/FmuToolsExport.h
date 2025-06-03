@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -42,10 +42,10 @@
 
 // =============================================================================
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi3 {
 
-/// @addtogroup fmu_tools_fmi3
+/// @addtogroup fmu_forge_fmi3
 /// @{
 
 #ifdef __cplusplus
@@ -676,9 +676,9 @@ FmuComponentBase* fmi3InstantiateIMPL(FmuType fmiInterfaceType,
                                       fmi3InstanceEnvironment instanceEnvironment,
                                       fmi3LogMessageCallback logMessage);
 
-/// @} fmu_tools_fmi3
+/// @} fmu_forge_fmi3
 
 }  // namespace fmi3
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

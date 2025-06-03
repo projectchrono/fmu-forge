@@ -138,7 +138,7 @@ else()
     list(APPEND FMU_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/TypesVariantsDefault.h)
 endif()
 
-source_group("fmu_tools" FILES ${FMU_SOURCES})
+source_group("fmu_forge" FILES ${FMU_SOURCES})
 
 # *************************************************************************************************
 # Caller must add custom sources to the ${FMU_MODEL_IDENTIFIER} target with a call as follows:

@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for model exchange (FMI 2.0 standard)
-// Illustrates the FMU exporting capabilities in fmu_tools (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
 // =============================================================================
 
 #define NOMINMAX
@@ -26,8 +26,8 @@
 // #define FMI2_FUNCTION_PREFIX MyModel_
 #include "myFmuModelExchange_fmi2.h"
 
-using namespace fmu_tools;
-using namespace fmu_tools::fmi2;
+using namespace fmu_forge;
+using namespace fmu_forge::fmi2;
 
 // -----------------------------------------------------------------------------
 

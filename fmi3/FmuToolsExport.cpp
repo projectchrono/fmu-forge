@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -34,7 +34,7 @@
 
 #include "rapidxml/rapidxml_ext.hpp"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi3 {
 
 // =============================================================================
@@ -1098,13 +1098,13 @@ void FmuComponentBase::sendToLog(std::string msg, fmi3Status status, std::string
 }
 
 }  // namespace fmi3
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 // =============================================================================
 // FMU FUNCTIONS
 // =============================================================================
 
-using namespace fmu_tools::fmi3;
+using namespace fmu_forge::fmi3;
 
 // ------ Inquire version numbers and set debug logging
 
@@ -1171,9 +1171,9 @@ fmi3Instance fmi3InstantiateScheduledExecution(fmi3String instanceName,
                                                fmi3ClockUpdateCallback clockUpdate,
                                                fmi3LockPreemptionCallback lockPreemption,
                                                fmi3UnlockPreemptionCallback unlockPreemption) {
-    // Not supported in fmu_tools
+    // Not supported in fmu-forge
     logMessage(instanceEnvironment, fmi3Status::fmi3Error, "logStatusError",
-               "fmu_tools does not currently support the ScheduledExecution interface.\n");
+               "fmu-forge does not currently support the ScheduledExecution interface.\n");
     return nullptr;
 }
 

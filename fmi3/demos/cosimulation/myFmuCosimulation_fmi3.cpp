@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for co-simulation (FMI 3.0 standard)
-// Illustrates the FMU exporting capabilities in fmu_tools (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
 // =============================================================================
 
 #define NOMINMAX
@@ -26,8 +26,8 @@
 // #define FMI3_FUNCTION_PREFIX MyModel_
 #include "myFmuCosimulation_fmi3.h"
 
-using namespace fmu_tools;
-using namespace fmu_tools::fmi3;
+using namespace fmu_forge;
+using namespace fmu_forge::fmi3;
 
 // -----------------------------------------------------------------------------
 

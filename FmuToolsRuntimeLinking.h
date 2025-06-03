@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -39,9 +39,9 @@
 
 #include <iostream>
 
-namespace fmu_tools {
+namespace fmu_forge {
 
-/// @addtogroup fmu_tools
+/// @addtogroup fmu_forge
 /// @{
 
 /// Runtime/Dynamic linking of shared library.
@@ -124,8 +124,8 @@ std::string GetLibraryLocation() {
     return library_folder.string();
 }
 
-/// @} fmu_tools
+/// @} fmu_forge
 
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -28,11 +28,11 @@
 
 // =============================================================================
 
-namespace fmu_tools {
+namespace fmu_forge {
 /// Namespace for FMI 2.0 classes
 namespace fmi2 {
 
-/// @addtogroup fmu_tools_fmi2
+/// @addtogroup fmu_forge_fmi2
 /// @{
 
 /// Enumeration of supported FMU types (interfaces).
@@ -332,9 +332,9 @@ class FmuVariable {
     bool m_has_start;  ///< start value provided
 };
 
-/// @} fmu_tools_fmi2
+/// @} fmu_forge_fmi2
 
 }  // namespace fmi2
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

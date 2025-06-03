@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for co-simulation (FMI 3.0 standard)
-// Illustrates the FMU exporting capabilities in fmu_tools (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
 // =============================================================================
 
 #pragma once
@@ -23,9 +23,9 @@
 // #define FMI3_FUNCTION_PREFIX MyModel_
 #include "fmi3/FmuToolsExport.h"
 
-class myFmuComponent : public fmu_tools::fmi3::FmuComponentBase {
+class myFmuComponent : public fmu_forge::fmi3::FmuComponentBase {
   public:
-    myFmuComponent(fmu_tools::fmi3::FmuType fmiInterfaceType,
+    myFmuComponent(fmu_forge::fmi3::FmuType fmiInterfaceType,
                    fmi3String instanceName,
                    fmi3String instantiationToken,
                    fmi3String resourcePath,

@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -23,10 +23,10 @@
 #include "miniz-cpp/zip_file.hpp"
 #include "filesystem.hpp"
 
-/// Main namespace for the fmu_tools package
-namespace fmu_tools {
+/// Main namespace for the fmu-forge package
+namespace fmu_forge {
 
-/// @addtogroup fmu_tools
+/// @addtogroup fmu-forge
 /// @{
 
 /// Enumeration of supported FMI standard versions.
@@ -76,8 +76,8 @@ FmuVersion GetFmuVersion(const std::string& fmufilename) {
         throw std::runtime_error("Unsupported FMI version. \n");
 }
 
-/// @} fmu_tools
+/// @} fmu-forge
 
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif

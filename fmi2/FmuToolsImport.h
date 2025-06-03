@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -30,10 +30,10 @@
 #include "FmuToolsImportCommon.h"
 #include "fmi2/FmuToolsVariable.h"
 
-namespace fmu_tools {
+namespace fmu_forge {
 namespace fmi2 {
 
-/// @addtogroup fmu_tools_fmi2
+/// @addtogroup fmu_forge_fmi2
 /// @{
 
 #define LOAD_FMI_FUNCTION(funcName)                                                                    \
@@ -952,7 +952,7 @@ fmi2Status FmuUnit::SetVariable(const std::string& varname, const bool& value) n
     return SetVariable(varname, value ? 1 : 0, FmuVariable::Type::Boolean);
 }
 
-/// @} fmu_tools_fmi2
+/// @} fmu_forge_fmi2
 
 }  // namespace fmi2
-}  // namespace fmu_tools
+}  // namespace fmu_forge

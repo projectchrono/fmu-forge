@@ -1,5 +1,5 @@
 // =============================================================================
-// fmu_tools
+// fmu-forge
 //
 // Copyright (c) 2024 Project Chrono (projectchrono.org)
 // Copyright (c) 2024 Digital Dynamics Lab, University of Parma, Italy
@@ -26,11 +26,11 @@
 #include "fmi3/fmi3_headers/fmi3FunctionTypes.h"
 #include "fmi3/fmi3_headers/fmi3Functions.h"
 
-namespace fmu_tools {
+namespace fmu_forge {
 /// Namespace for FMI 3.0 classes
 namespace fmi3 {
 
-/// @addtogroup fmu_tools_fmi3
+/// @addtogroup fmu_forge_fmi3
 /// @{
 
 // =============================================================================
@@ -444,9 +444,9 @@ class FmuVariable {
     mutable DimensionsArrayType m_dimensions;
 };
 
-/// @} fmu_tools_fmi3
+/// @} fmu_forge_fmi3
 
 }  // namespace fmi3
-}  // namespace fmu_tools
+}  // namespace fmu_forge
 
 #endif
