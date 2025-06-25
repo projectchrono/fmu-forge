@@ -68,7 +68,14 @@ DYNLIB_HANDLE RuntimeLinkLibrary(const std::string& dynlib_dir, const std::strin
 
     return dynlib_handle;
 #else
-    return dlopen(dynlib_name.c_str(), RTLD_LAZY);
+    void* dlib = dlopen(dynlib_name.c_str(), RTLD_LAZY);
+    if (dlib == NULL) {
+        std::cerr << "ERROR: cannot load the shared object library: " << dynlib_name << std::endl;
+        std::string message = dlerror();
+        std::cerr << "dlerror returned: " << message << std::endl;
+        throw std::runtime_error("Could not load the library.");
+    }
+    return dlib;
 #endif
 }
 
