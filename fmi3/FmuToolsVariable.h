@@ -18,10 +18,11 @@
 
 #include <stdexcept>
 #include <string>
+#include <cstdint>
 #include <cstdarg>
+#include <cassert>
 #include <typeindex>
 #include <unordered_map>
-#include <cassert>
 
 #include "fmi3/fmi3_headers/fmi3FunctionTypes.h"
 #include "fmi3/fmi3_headers/fmi3Functions.h"
@@ -143,6 +144,9 @@ class FmuVariable {
           m_initial(initial),
           m_description("") {
         // Readibility replacements
+        bool t_float32 = (m_type == FmuVariable::Type::Float32);
+        bool t_float64 = (m_type == FmuVariable::Type::Float64);
+
         bool c_structural = (m_causality == CausalityType::structuralParameter);
         bool c_parameter = (m_causality == CausalityType::parameter);
         bool c_calculated = (m_causality == CausalityType::calculatedParameter);
@@ -195,6 +199,11 @@ class FmuVariable {
         }
 
         assert(m_initial != InitialType::automatic);
+
+        // Only variables of type <Float32> or <Float64> may be continuous (see Table 17 of the FMI3.0 specification)
+        if (v_continuous && (!t_float32 && !t_float64))
+            throw std::runtime_error("Variable '" + name +
+                                     "': only variables of type <Float32> or <Float64> may be continuous.");
 
         // Incompatible variability/causality settings (see Tables 18 and 19 of the FMI3.0 specification)
         // (a)

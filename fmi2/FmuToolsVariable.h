@@ -19,9 +19,9 @@
 #include <stdexcept>
 #include <string>
 #include <cstdarg>
+#include <cassert>
 #include <typeindex>
 #include <unordered_map>
-#include <cassert>
 
 #include "fmi2/fmi2_headers/fmi2FunctionTypes.h"
 #include "fmi2/fmi2_headers/fmi2Functions.h"
@@ -140,6 +140,8 @@ class FmuVariable {
           m_description(""),
           m_has_start(false) {
         // Readibility replacements
+        bool t_real = (m_type == FmuVariable::Type::Real);
+
         bool c_parameter = (m_causality == CausalityType::parameter);
         bool c_calculated = (m_causality == CausalityType::calculatedParameter);
         bool c_input = (m_causality == CausalityType::input);
@@ -178,6 +180,11 @@ class FmuVariable {
             if (i_none)
                 m_initial = InitialType::calculated;
         }
+
+        // From page 49 of FMI2.0.4 specification:
+        // Only a variable of type = “Real” can be “continuous”.
+        if (v_continuous && !t_real)
+            throw std::runtime_error("Only a variable of type = 'Real' can be 'continuous'.");
 
         // From page 51 of FMI2.0.4 specification:
         // (1) If causality = "independent", it is neither allowed to define a value for initial nor a value for start.
