@@ -6,19 +6,19 @@ project(fmu-forge)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 mark_as_advanced(FORCE CMAKE_INSTALL_PREFIX)
 
-# # -------------------------------------------------
-# # Set FMU_FORGE_DIR to point to the location of this script
-# # (in this case, this is the top-level fmu-forge directory)
+# -------------------------------------------------
+# Set FMU_FORGE_DIR to point to the location of this script
+# (in this case, this is the top-level fmu-forge directory)
 
 set(FMU_FORGE_DIR ${CMAKE_SOURCE_DIR})
 
 # -------------------------------------------------
 # Add the various demo subdirectories
 
-message(STATUS "\nDemos for FMI 2.0")
-add_subdirectory(fmi2/demos/cosimulation)
-add_subdirectory(fmi2/demos/model_exchange)
+message(STATUS "\nExamples for FMI 2.0")
+add_subdirectory(examples/fmi2/cosimulation)
+add_subdirectory(examples/fmi2/model_exchange)
 
-message(STATUS "\nDemos for FMI 3.0")
-add_subdirectory(fmi3/demos/cosimulation)
-add_subdirectory(fmi3/demos/model_exchange)
+message(STATUS "\nExamples for FMI 3.0")
+add_subdirectory(examples/fmi3/cosimulation)
+add_subdirectory(examples/fmi3/model_exchange)
