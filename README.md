@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/projectchrono/fmu-forge/blob/main/fmu-forge.png" height="200">
+<img src="https://github.com/projectchrono/fmu-forge/blob/main/fmu-forge.png" width="200">
 </p>
 
 #
