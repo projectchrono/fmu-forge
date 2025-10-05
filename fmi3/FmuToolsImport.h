@@ -708,73 +708,73 @@ void FmuUnit::LoadXML() {
             throw std::runtime_error("Cannot find 'name' property in variable.");
 
         // Get variable attributes
-        fmi3ValueReference valref = 0;
-        std::string description = "";
-        std::string variability = "";
-        std::string causality = "";
-        std::string initial = "";
+        fmi3ValueReference var_valref = 0;
+        std::string var_description = "";
+        std::string var_variability = "";
+        std::string var_causality = "";
+        std::string var_initial = "";
 
         // valueReference is 1-based
         if (auto attr = var_node->first_attribute("valueReference"))
-            valref = std::stoul(attr->value());
+            var_valref = std::stoul(attr->value());
         else
             throw std::runtime_error("Cannot find 'valueReference' property in variable.");
 
         if (auto attr = var_node->first_attribute("description"))
-            description = attr->value();
+            var_description = attr->value();
 
         if (auto attr = var_node->first_attribute("variability"))
-            variability = attr->value();
+            var_variability = attr->value();
 
         if (auto attr = var_node->first_attribute("causality"))
-            causality = attr->value();
+            var_causality = attr->value();
 
         if (auto attr = var_node->first_attribute("initial"))
-            initial = attr->value();
+            var_initial = attr->value();
 
         FmuVariable::CausalityType causality_enum;
         FmuVariable::VariabilityType variability_enum;
         FmuVariable::InitialType initial_enum;
 
-        if (causality.empty())
+        if (var_causality.empty())
             causality_enum = FmuVariable::CausalityType::local;
-        else if (!causality.compare("parameter"))
+        else if (!var_causality.compare("parameter"))
             causality_enum = FmuVariable::CausalityType::parameter;
-        else if (!causality.compare("calculatedParameter"))
+        else if (!var_causality.compare("calculatedParameter"))
             causality_enum = FmuVariable::CausalityType::calculatedParameter;
-        else if (!causality.compare("input"))
+        else if (!var_causality.compare("input"))
             causality_enum = FmuVariable::CausalityType::input;
-        else if (!causality.compare("output"))
+        else if (!var_causality.compare("output"))
             causality_enum = FmuVariable::CausalityType::output;
-        else if (!causality.compare("local"))
+        else if (!var_causality.compare("local"))
             causality_enum = FmuVariable::CausalityType::local;
-        else if (!causality.compare("independent"))
+        else if (!var_causality.compare("independent"))
             causality_enum = FmuVariable::CausalityType::independent;
         else
             throw std::runtime_error("causality is badly formatted.");
 
-        if (variability.empty())
+        if (var_variability.empty())
             variability_enum = FmuVariable::VariabilityType::continuous;
-        else if (!variability.compare("constant"))
+        else if (!var_variability.compare("constant"))
             variability_enum = FmuVariable::VariabilityType::constant;
-        else if (!variability.compare("fixed"))
+        else if (!var_variability.compare("fixed"))
             variability_enum = FmuVariable::VariabilityType::fixed;
-        else if (!variability.compare("tunable"))
+        else if (!var_variability.compare("tunable"))
             variability_enum = FmuVariable::VariabilityType::tunable;
-        else if (!variability.compare("discrete"))
+        else if (!var_variability.compare("discrete"))
             variability_enum = FmuVariable::VariabilityType::discrete;
-        else if (!variability.compare("continuous"))
+        else if (!var_variability.compare("continuous"))
             variability_enum = FmuVariable::VariabilityType::continuous;
         else
             throw std::runtime_error("variability is badly formatted.");
 
-        if (initial.empty())
+        if (var_initial.empty())
             initial_enum = FmuVariable::InitialType::none;
-        else if (!initial.compare("exact"))
+        else if (!var_initial.compare("exact"))
             initial_enum = FmuVariable::InitialType::exact;
-        else if (!initial.compare("approx"))
+        else if (!var_initial.compare("approx"))
             initial_enum = FmuVariable::InitialType::approx;
-        else if (!initial.compare("calculated"))
+        else if (!var_initial.compare("calculated"))
             initial_enum = FmuVariable::InitialType::calculated;
         else
             throw std::runtime_error("variability is badly formatted.");
@@ -830,7 +830,7 @@ void FmuUnit::LoadXML() {
 
         if (auto attr = var_node->first_attribute("derivative")) {
             state_valref.push_back(std::stoul(attr->value()));
-            deriv_valref.push_back(valref);
+            deriv_valref.push_back(var_valref);
             is_deriv = true;
         }
         if (auto attr = var_node->first_attribute("unit")) {
@@ -843,9 +843,9 @@ void FmuUnit::LoadXML() {
         // Create and cache the new variable (also caching its value reference)
         FmuVariableImport var(var_name, var_type, dimensions, causality_enum, variability_enum, initial_enum);
         var.m_is_deriv = is_deriv;
-        var.SetValueReference(valref);
+        var.SetValueReference(var_valref);
 
-        m_variables[valref] = var;
+        m_variables[var_valref] = var;
     }
 
     // Traverse the list of state value references and mark the corresponding FMU variable as a state
