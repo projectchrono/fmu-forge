@@ -26,7 +26,7 @@
 /// Main namespace for the fmu-forge package
 namespace fmu_forge {
 
-/// @addtogroup fmu-forge
+/// @addtogroup fmu_forge
 /// @{
 
 /// Enumeration of supported FMI standard versions.
@@ -76,7 +76,7 @@ FmuVersion GetFmuVersion(const std::string& fmufilename) {
         throw std::runtime_error("Unsupported FMI version. \n");
 }
 
-/// @} fmu-forge
+/// @} fmu_forge
 
 }  // namespace fmu_forge
 
