@@ -327,11 +327,13 @@ FmuComponentBase::FmuComponentBase(FmuType fmiInterfaceType,
                    FmuVariable::VariabilityType::continuous);
 
     // Decode the resource path. FMI 3.0 specifies a plain path here, but accept a "file:" URI as well
-    // (see ResourceLocationToPath for the forms accepted).
-    auto resources_path = ResourceLocationToPath(std::string(resourcePath));
+    // (see ResourceLocationToPath for the forms accepted). resourcePath may be null when the FMU ships
+    // no resources directory, so it is never fed to std::string unchecked.
+    std::string resources_location = resourcePath ? std::string(resourcePath) : std::string();
+    auto resources_path = ResourceLocationToPath(resources_location);
 
     if (resources_path.empty()) {
-        sendToLog("Cannot parse resource location: " + std::string(resourcePath) + "\n", fmi3Status::fmi3Warning,
+        sendToLog("Cannot parse resource location: " + resources_location + "\n", fmi3Status::fmi3Warning,
                   "logStatusWarning");
 
         resources_path = GetLibraryLocation() + "/../../resources";

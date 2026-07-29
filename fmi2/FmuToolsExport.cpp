@@ -213,11 +213,13 @@ FmuComponentBase::FmuComponentBase(fmi2String instanceName,
                    FmuVariable::VariabilityType::continuous);
 
     // Decode the resource location, which may be a "file:" URI or a plain path (see
-    // ResourceLocationToPath for the forms accepted).
-    auto resources_path = ResourceLocationToPath(std::string(fmuResourceLocation));
+    // ResourceLocationToPath for the forms accepted). fmuResourceLocation may be null when the FMU
+    // ships no resources directory, so it is never fed to std::string unchecked.
+    std::string resources_location = fmuResourceLocation ? std::string(fmuResourceLocation) : std::string();
+    auto resources_path = ResourceLocationToPath(resources_location);
 
     if (resources_path.empty()) {
-        sendToLog("Cannot parse resource location: " + std::string(fmuResourceLocation) + "\n",
+        sendToLog("Cannot parse resource location: " + resources_location + "\n",
                   fmi2Status::fmi2Warning, "logStatusWarning");
 
         resources_path = GetLibraryLocation() + "/../../resources";
