@@ -198,6 +198,11 @@ class FmuComponentBase {
 
     double GetTime() const { return m_time; }
 
+    /// Return the location of the FMU resources directory, as a filesystem path with a trailing separator.
+    /// This is the decoded form of the resource location passed at instantiation; a concrete FMU should use it
+    /// rather than decoding that argument itself.
+    const std::string& GetResourcesLocation() const { return m_resources_location; }
+
     template <class T>
     fmi2Status fmi2GetVariable(const fmi2ValueReference vr[], size_t nvr, T value[], FmuVariable::Type vartype) {
         //// TODO

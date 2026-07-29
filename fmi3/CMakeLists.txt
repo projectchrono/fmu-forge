@@ -113,7 +113,8 @@ message(STATUS "${FMU_MSG_PREFIX}FMU_GUID: ${FMU_GUID}")
 # Target to compile the FMU source code
 # -------------------------------------
 
-set(FMU_SOURCES 
+set(FMU_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../FmuToolsResourceLocation.h
     ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsVariable.h
     ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsExport.h
     ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsExport.cpp)

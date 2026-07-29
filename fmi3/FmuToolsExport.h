@@ -266,6 +266,11 @@ class FmuComponentBase {
 
     double GetTime() const { return m_time; }
 
+    /// Return the location of the FMU resources directory, as a filesystem path with a trailing separator.
+    /// This is the decoded form of the resource path passed at instantiation; a concrete FMU should use it
+    /// rather than decoding that argument itself.
+    const std::string& GetResourcesLocation() const { return m_resources_location; }
+
     template <class T>
     fmi3Status fmi3GetVariable(const fmi3ValueReference vrs[], size_t nvr, T values[], size_t nValues) {
         //// when multiple variables are requested it might be better to iterate through scalarVariables just once
