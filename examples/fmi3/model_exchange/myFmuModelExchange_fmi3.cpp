@@ -234,7 +234,7 @@ fmi3Status myFmuComponent::enterInitializationModeIMPL() {
 }
 
 fmi3Status myFmuComponent::exitInitializationModeIMPL() {
-    std::string myfile_location = m_resources_location + "/" + filename;
+    std::string myfile_location = GetResourcePath(filename);
     std::ifstream resfile(myfile_location);
 
     if (resfile.good()) {

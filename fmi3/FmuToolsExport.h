@@ -29,6 +29,7 @@
 #include <list>
 #include <sstream>
 
+#include "FmuToolsResourceLocation.h"
 #include "FmuToolsUnitDefinitions.h"
 #include "fmi3/FmuToolsVariable.h"
 #include "fmi3/fmi3_headers/fmi3Functions.h"
@@ -266,10 +267,17 @@ class FmuComponentBase {
 
     double GetTime() const { return m_time; }
 
-    /// Return the location of the FMU resources directory, as a filesystem path with a trailing separator.
+    /// Return the location of the FMU resources directory, as a filesystem path.
     /// This is the decoded form of the resource path passed at instantiation; a concrete FMU should use it
     /// rather than decoding that argument itself.
+    /// GUARANTEE: the returned path always ends in exactly one '/' separator, whether or not the importer supplied
+    /// one. Callers that append a file name should still prefer GetResourcePath(), which does not depend on this.
     const std::string& GetResourcesLocation() const { return m_resources_location; }
+
+    /// Return the full path to \a filename inside the FMU resources directory.
+    /// Inserts a separator only if one is needed, so a caller never has to know whether the resources location
+    /// ends in one. Prefer this over concatenating onto GetResourcesLocation() by hand.
+    std::string GetResourcePath(const std::string& filename) const { return JoinPath(m_resources_location, filename); }
 
     template <class T>
     fmi3Status fmi3GetVariable(const fmi3ValueReference vrs[], size_t nvr, T values[], size_t nValues) {

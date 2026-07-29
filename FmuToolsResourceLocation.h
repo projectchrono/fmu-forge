@@ -47,6 +47,18 @@ inline bool HasFileScheme(const std::string& location) {
     return true;
 }
 
+/// Join a directory and a file name, inserting a separator only if one is needed.
+/// Lets a caller append a file name without knowing whether the directory ends in a separator, which importers and
+/// resource locations are inconsistent about. Either argument being empty yields plain concatenation.
+inline std::string JoinPath(const std::string& dir, const std::string& filename) {
+    if (dir.empty() || filename.empty())
+        return dir + filename;
+    char last = dir.back();
+    if (last == '/' || last == '\\')
+        return dir + filename;
+    return dir + "/" + filename;
+}
+
 /// Decode percent-encoded ("%20") octets in a URI path.
 /// Any '%' not followed by two hex digits is passed through unchanged.
 inline std::string PercentDecode(const std::string& in) {
