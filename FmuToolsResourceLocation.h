@@ -101,7 +101,14 @@ inline std::string PercentDecode(const std::string& in) {
 ///
 /// A string carrying no "file:" scheme is a path already and is returned unchanged. In particular a literal '%' in a
 /// filename is never mistaken for a percent-encoded octet, and a Windows UNC path is never mistaken for a URI
-/// authority. A "file:" URI always yields a rooted path; an empty string is returned only for empty input.
+/// authority.
+///
+/// An absolute "file:" URI, meaning one whose path begins with '/', yields a rooted path. A relative reference such
+/// as "file:resources/Vehicle.json" has a relative path by definition and is returned relative; this function does
+/// not invent a root for it. An empty string is returned only for empty input.
+///
+/// An unescaped '?' or '#' delimits the query or fragment and is not part of the path, so anything from the first one
+/// onwards is discarded. A percent-escaped '%3F' or '%23' is an ordinary character in a file name and is kept.
 inline std::string ResourceLocationToPath(const std::string& location) {
     if (!HasFileScheme(location))
         return location;
@@ -113,15 +120,22 @@ inline std::string ResourceLocationToPath(const std::string& location) {
     // looks like an authority is really a drive letter.
     bool drive_follows = path.size() >= 4 && IsAsciiAlpha(path[2]) && path[3] == ':';
     if (path.rfind("//", 0) == 0 && !drive_follows) {
-        auto slash = path.find('/', 2);
-        if (slash == std::string::npos) {
+        // The authority ends at the first '/', '?' or '#' (RFC 3986, section 3.2).
+        auto end = path.find_first_of("/?#", 2);
+        if (end == std::string::npos) {
             authority = path.substr(2);
             path.clear();
         } else {
-            authority = path.substr(2, slash - 2);
-            path.erase(0, slash);
+            authority = path.substr(2, end - 2);
+            path.erase(0, end);
         }
     }
+
+    // An unescaped '?' starts the query and '#' starts the fragment; neither belongs to the path
+    // (RFC 3986, section 3.3). Cut before percent-decoding, so an ESCAPED '%3F' stays part of the path.
+    auto delim = path.find_first_of("?#");
+    if (delim != std::string::npos)
+        path.erase(delim);
 
     path = PercentDecode(path);
 

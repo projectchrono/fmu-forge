@@ -230,7 +230,8 @@ FmuComponentBase::FmuComponentBase(fmi2String instanceName,
     // m_resources_location always ends in exactly one separator; see GetResourcesLocation(). Importers differ on
     // whether they include a trailing one, so add it only when absent rather than unconditionally.
     m_resources_location = resources_path;
-    if (m_resources_location.empty() || m_resources_location.back() != '/')
+    if (m_resources_location.empty() ||
+        (m_resources_location.back() != '/' && m_resources_location.back() != '\\'))
         m_resources_location += "/";
 
     // Compare GUID
