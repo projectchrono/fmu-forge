@@ -1092,6 +1092,10 @@ void FmuUnit::Instantiate(const std::string& instanceName,
 
 void FmuUnit::Instantiate(const std::string& instanceName, bool logging, bool visible) {
     try {
+        // NOTE: FMI 3.0 specifies resourcePath as a plain path, not a URI, so this should eventually pass
+        // m_directory + "/resources" directly. Deliberately left as-is for backward compatibility: an FMU carries
+        // its own decoder compiled in, and FMUs built before ResourceLocationToPath existed cannot handle a plain
+        // path. Fix this only once those are out of circulation; the current decoder accepts both forms.
         Instantiate(instanceName, "file:///" + m_directory + "/resources", logging, visible);
     } catch (std::exception&) {
         throw;

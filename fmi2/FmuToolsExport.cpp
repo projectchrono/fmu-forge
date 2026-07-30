@@ -13,10 +13,10 @@
 // Classes for exporting FMUs (FMI 2.0)
 // =============================================================================
 
-#include <regex>
 #include <fstream>
 
 #include "fmi2/FmuToolsExport.h"
+#include "FmuToolsResourceLocation.h"
 #include "FmuToolsRuntimeLinking.h"
 
 #include "rapidxml/rapidxml_ext.hpp"
@@ -212,31 +212,27 @@ FmuComponentBase::FmuComponentBase(fmi2String instanceName,
                    FmuVariable::CausalityType::independent,                //
                    FmuVariable::VariabilityType::continuous);
 
-    // Parse URL according to https://datatracker.ietf.org/doc/html/rfc3986
-    std::string m_resources_location_str = std::string(fmuResourceLocation);
+    // Decode the resource location, which may be a "file:" URI or a plain path (see
+    // ResourceLocationToPath for the forms accepted). fmuResourceLocation may be null when the FMU
+    // ships no resources directory, so it is never fed to std::string unchecked.
+    std::string resources_location = fmuResourceLocation ? std::string(fmuResourceLocation) : std::string();
+    auto resources_path = ResourceLocationToPath(resources_location);
 
-    std::regex url_patternA("^(\\w+):\\/\\/[^\\/]*\\/([^#\\?]+)");
-    std::regex url_patternB("^(\\w+):\\/([^\\/][^#\\?]+)");
+    if (resources_path.empty()) {
+        sendToLog("Cannot parse resource location: " + resources_location + "\n",
+                  fmi2Status::fmi2Warning, "logStatusWarning");
 
-    std::smatch url_matches;
-    std::string url_scheme;
-    if ((std::regex_search(m_resources_location_str, url_matches, url_patternA) ||
-         std::regex_search(m_resources_location_str, url_matches, url_patternB)) &&
-        url_matches.size() >= 3) {
-        if (url_matches[1].compare("file") != 0) {
-            sendToLog("Bad URL scheme: " + url_matches[1].str() + ". Trying to continue.\n", fmi2Status::fmi2Warning,
-                      "logStatusWarning");
-        }
-        m_resources_location = std::string(url_matches[2]) + "/";
-    } else {
-        // TODO: rollback?
-        sendToLog("Cannot parse resource location: " + m_resources_location_str + "\n", fmi2Status::fmi2Warning,
-                  "logStatusWarning");
-
-        m_resources_location = GetLibraryLocation() + "/../../resources/";
-        sendToLog("Rolled back to default location: " + m_resources_location + "\n", fmi2Status::fmi2Warning,
+        resources_path = GetLibraryLocation() + "/../../resources";
+        sendToLog("Rolled back to default location: " + resources_path + "\n", fmi2Status::fmi2Warning,
                   "logStatusWarning");
     }
+
+    // m_resources_location always ends in exactly one separator; see GetResourcesLocation(). Importers differ on
+    // whether they include a trailing one, so add it only when absent rather than unconditionally.
+    m_resources_location = resources_path;
+    if (m_resources_location.empty() ||
+        (m_resources_location.back() != '/' && m_resources_location.back() != '\\'))
+        m_resources_location += "/";
 
     // Compare GUID
     if (std::string(fmuGUID).compare(m_fmuGUID)) {

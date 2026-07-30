@@ -783,6 +783,11 @@ void FmuUnit::Instantiate(const std::string& instanceName,
 
 void FmuUnit::Instantiate(const std::string& instanceName, bool logging, bool visible) {
     try {
+        // NOTE: on POSIX, m_directory is already rooted, so this yields a non-conforming "file:////abs/path"
+        // with four slashes. Deliberately left as-is for backward compatibility: an FMU carries its own
+        // decoder compiled in, and FMUs built before ResourceLocationToPath existed strip a fixed 8 characters,
+        // which only lands correctly on the four-slash form. Emitting a conforming URI here would break every
+        // such FMU. Fix this only once those are out of circulation; the current decoder accepts both forms.
         Instantiate(instanceName, "file:///" + m_directory + "/resources", logging, visible);
     } catch (std::exception&) {
         throw;
