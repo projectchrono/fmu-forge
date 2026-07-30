@@ -16,7 +16,7 @@
 #include <string>
 #include <iostream>
 
-#include "FmuToolsRuntimeLinking.h"
+#include "FmuForgeRuntimeLinking.h"
 
 using namespace fmu_forge;
 

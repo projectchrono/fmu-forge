@@ -15,9 +15,9 @@
 
 #include <fstream>
 
-#include "fmi2/FmuToolsExport.h"
-#include "FmuToolsResourceLocation.h"
-#include "FmuToolsRuntimeLinking.h"
+#include "fmi2/FmuForgeExport.h"
+#include "FmuForgeResourceLocation.h"
+#include "FmuForgeRuntimeLinking.h"
 
 #include "rapidxml/rapidxml_ext.hpp"
 

@@ -11,14 +11,14 @@
 //
 // =============================================================================
 // Example FMU instantiation for model exchange (FMI 3.0 standard)
-// Illustrates the FMU importing capabilities in fmu-forge (FmuToolsImport.h)
+// Illustrates the FMU importing capabilities in fmu-forge (FmuForgeImport.h)
 // =============================================================================
 
 #include <iostream>
 #include <fstream>
 #include <cstddef>
 
-#include "fmi3/FmuToolsImport.h"
+#include "fmi3/FmuForgeImport.h"
 
 using namespace fmu_forge::fmi3;
 

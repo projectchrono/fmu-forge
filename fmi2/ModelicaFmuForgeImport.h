@@ -15,7 +15,7 @@
 
 #pragma once
 
-#include "fmi2/FmuToolsImport.h"
+#include "fmi2/FmuForgeImport.h"
 
 namespace fmu_forge {
 namespace fmi2 {

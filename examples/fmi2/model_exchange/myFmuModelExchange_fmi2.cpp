@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for model exchange (FMI 2.0 standard)
-// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuForgeExport.h)
 // =============================================================================
 
 #define NOMINMAX
@@ -31,7 +31,7 @@ using namespace fmu_forge::fmi2;
 
 // -----------------------------------------------------------------------------
 
-// Implement function declared in FmuToolsExport.h to create an instance of this FMU.
+// Implement function declared in FmuForgeExport.h to create an instance of this FMU.
 FmuComponentBase* fmi2::fmi2InstantiateIMPL(fmi2String instanceName,
                                             fmi2Type fmuType,
                                             fmi2String fmuGUID,

@@ -13,8 +13,7 @@
 // Definition of the FMU variable base class and logging utilities (FMI 3.0)
 // =============================================================================
 
-#ifndef FMUTOOLS_FMI3_VARIABLE_H
-#define FMUTOOLS_FMI3_VARIABLE_H
+#pragma once
 
 #include <stdexcept>
 #include <string>
@@ -143,7 +142,7 @@ class FmuVariable {
           m_variability(variability),
           m_initial(initial),
           m_description("") {
-        // Readibility replacements
+        // Readability replacements
         bool t_float32 = (m_type == FmuVariable::Type::Float32);
         bool t_float64 = (m_type == FmuVariable::Type::Float64);
 
@@ -162,8 +161,8 @@ class FmuVariable {
         bool v_continuous = (m_variability == VariabilityType::continuous);
 
         // Check on 'initial' attribute (see Table 22 in FMI3.0 specification)
-        // - if initital == InitialType::automatic: automatically sets the "initial" property to its default value
-        // - if initital != InitialType::automatic: checks if the "initial" property is feasible for the current
+        // - if initial == InitialType::automatic: automatically sets the "initial" property to its default value
+        // - if initial != InitialType::automatic: checks if the "initial" property is feasible for the current
         // variable
         //
         // (A)
@@ -446,9 +445,9 @@ class FmuVariable {
     bool m_intermediateUpdate = false;    ///< TODO: if true, this variable is updated at intermediate steps
 
     /// List of pairs (size, fixed) for each dimension.
-    /// - if m_dimensions[i].second == true (i.e. labelled as 'fixed') then 'size' is the actual size for that
+    /// - if m_dimensions[i].second == true (i.e. labeled as 'fixed') then 'size' is the actual size for that
     /// dimension;
-    /// - if m_dimensions[i].second == false (i.e. labelled as not 'fixed') then 'size' provides an fmi3ValueReference
+    /// - if m_dimensions[i].second == false (i.e. labeled as not 'fixed') then 'size' provides an fmi3ValueReference
     /// to another variable that will provides the size of this variable;
     mutable DimensionsArrayType m_dimensions;
 };
@@ -457,5 +456,3 @@ class FmuVariable {
 
 }  // namespace fmi3
 }  // namespace fmu_forge
-
-#endif

@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for co-simulation (FMI 3.0 standard)
-// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuForgeExport.h)
 // =============================================================================
 
 #pragma once
@@ -21,7 +21,7 @@
 #include <fstream>
 
 // #define FMI3_FUNCTION_PREFIX MyModel_
-#include "fmi3/FmuToolsExport.h"
+#include "fmi3/FmuForgeExport.h"
 
 class myFmuComponent : public fmu_forge::fmi3::FmuComponentBase {
   public:

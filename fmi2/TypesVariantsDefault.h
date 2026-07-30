@@ -13,8 +13,7 @@
 // Definitions for the types platform (FMI 2.0)
 // =============================================================================
 
-#ifndef FMUTOLS_FMI2_TYPESVARIANTS_H
-#define FMUTOLS_FMI2_TYPESVARIANTS_H
+#pragma once
 
 #include <string>
 
@@ -55,5 +54,3 @@ using FmuVariableStartType = varns::variant<  //
 
 }  // namespace fmi2
 }  // namespace fmu_forge
-
-#endif

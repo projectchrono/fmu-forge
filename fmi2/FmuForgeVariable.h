@@ -13,8 +13,7 @@
 // Definition of the FMU variable base class and logging utilities (FMI 2.0)
 // =============================================================================
 
-#ifndef FMUTOOLS_FMI2_VARIABLE_H
-#define FMUTOOLS_FMI2_VARIABLE_H
+#pragma once
 
 #include <stdexcept>
 #include <string>
@@ -139,7 +138,7 @@ class FmuVariable {
           m_initial(initial),
           m_description(""),
           m_has_start(false) {
-        // Readibility replacements
+        // Readability replacements
         bool t_real = (m_type == FmuVariable::Type::Real);
 
         bool c_parameter = (m_causality == CausalityType::parameter);
@@ -343,5 +342,3 @@ class FmuVariable {
 
 }  // namespace fmi2
 }  // namespace fmu_forge
-
-#endif

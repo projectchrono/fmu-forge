@@ -13,8 +13,7 @@
 // Utilities for run-time linking of shared libraries
 // =============================================================================
 
-#ifndef FMUTOOLS_RUNTIMELINKING_H
-#define FMUTOOLS_RUNTIMELINKING_H
+#pragma once
 
 #include <string>
 #include <stdexcept>
@@ -106,7 +105,7 @@ std::string GetLibraryLocation() {
         sym_ptr = dlsym(RTLD_DEFAULT, "fmi3DoStep");
     }
     if (sym_ptr == nullptr) {
-        std::cerr << "Error: FmuToolsRuntimeLinking: cannot find either fmi2DoStep nor fmi3DoStep" << std::endl;
+        std::cerr << "Error: FmuForgeRuntimeLinking: cannot find either fmi2DoStep nor fmi3DoStep" << std::endl;
     }
 
     Dl_info dl_info;
@@ -127,5 +126,3 @@ std::string GetLibraryLocation() {
 /// @} fmu_forge
 
 }  // namespace fmu_forge
-
-#endif

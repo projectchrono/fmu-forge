@@ -114,10 +114,10 @@ message(STATUS "${FMU_MSG_PREFIX}FMU_GUID: ${FMU_GUID}")
 # -------------------------------------
 
 set(FMU_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/../FmuToolsResourceLocation.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsVariable.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsExport.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/FmuToolsExport.cpp)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../FmuForgeResourceLocation.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FmuForgeVariable.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FmuForgeExport.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/FmuForgeExport.cpp)
 
 if(USE_CUSTOM_TYPESPLATFORM)
     message(STATUS "${FMU_MSG_PREFIX}Using custom 'fmi3PlatformTypes'.")
@@ -177,8 +177,8 @@ set_target_properties(${FMU_MODEL_IDENTIFIER} PROPERTIES LIBRARY_OUTPUT_DIRECTOR
 
 if (NOT TARGET fmi_modeldescription)
     set(MODELDESCRIPTION_SOURCES
-        ${CMAKE_CURRENT_SOURCE_DIR}/../FmuToolsRuntimeLinking.h 
-        ${CMAKE_CURRENT_SOURCE_DIR}/../FmuToolsModelDescription.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../FmuForgeRuntimeLinking.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/../FmuForgeModelDescription.cpp)
     source_group("" FILES ${MODELDESCRIPTION_SOURCES})
     
     set(fmi_modeldescription "fmi_modeldescription")

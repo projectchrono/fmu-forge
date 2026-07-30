@@ -13,8 +13,7 @@
 // Definitions for the types platform (FMI 3.0)
 // =============================================================================
 
-#ifndef FMUTOLS_FMI3_TYPESVARIANTS_H
-#define FMUTOLS_FMI3_TYPESVARIANTS_H
+#pragma once
 
 #include <string>
 
@@ -75,5 +74,3 @@ using FmuVariableBindType = varns::variant<float*,                  // fmi3Float
 
 }  // namespace fmi3
 }  // namespace fmu_forge
-
-#endif

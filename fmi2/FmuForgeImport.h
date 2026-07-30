@@ -26,9 +26,9 @@
 #include <algorithm>
 #include <iterator>
 
-#include "FmuToolsRuntimeLinking.h"
-#include "FmuToolsImportCommon.h"
-#include "fmi2/FmuToolsVariable.h"
+#include "FmuForgeRuntimeLinking.h"
+#include "FmuForgeImportCommon.h"
+#include "fmi2/FmuForgeVariable.h"
 
 namespace fmu_forge {
 namespace fmi2 {

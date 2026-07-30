@@ -13,8 +13,7 @@
 // Decoding of the FMU resource location provided at instantiation
 // =============================================================================
 
-#ifndef FMUTOOLS_RESOURCELOCATION_H
-#define FMUTOOLS_RESOURCELOCATION_H
+#pragma once
 
 #include <cctype>
 #include <string>
@@ -86,7 +85,7 @@ inline std::string PercentDecode(const std::string& in) {
     return out;
 }
 
-/// Convert an FMU resource location into a filesystem path.
+/// Convert an FMU resource location into a file system path.
 ///
 /// The FMI 2.0 standard specifies `fmuResourceLocation` as a URI, while FMI 3.0 specifies `resourcePath` as a plain
 /// path. Importers are also inconsistent in practice, so this function accepts all of the forms actually encountered:
@@ -97,7 +96,7 @@ inline std::string PercentDecode(const std::string& in) {
 /// - the scheme in any case, since URI schemes are case-insensitive (`FILE:///abs/path`);
 /// - a Windows drive letter in either the standard `file:///C:/path` or the non-standard `file://C:/path` form;
 /// - percent-encoded octets, which importers produce for paths containing spaces;
-/// - a plain filesystem path with no scheme at all, absolute or relative, POSIX or Windows.
+/// - a plain file system path with no scheme at all, absolute or relative, POSIX or Windows.
 ///
 /// A string carrying no "file:" scheme is a path already and is returned unchanged. In particular a literal '%' in a
 /// filename is never mistaken for a percent-encoded octet, and a Windows UNC path is never mistaken for a URI
@@ -107,8 +106,8 @@ inline std::string PercentDecode(const std::string& in) {
 /// as "file:resources/Vehicle.json" has a relative path by definition and is returned relative; this function does
 /// not invent a root for it. An empty string is returned only for empty input.
 ///
-/// An unescaped '?' or '#' delimits the query or fragment and is not part of the path, so anything from the first one
-/// onwards is discarded. A percent-escaped '%3F' or '%23' is an ordinary character in a file name and is kept.
+/// An un-escaped '?' or '#' delimits the query or fragment and is not part of the path, so anything from the first one
+/// onward is discarded. A percent-escaped '%3F' or '%23' is an ordinary character in a file name and is kept.
 inline std::string ResourceLocationToPath(const std::string& location) {
     if (!HasFileScheme(location))
         return location;
@@ -131,7 +130,7 @@ inline std::string ResourceLocationToPath(const std::string& location) {
         }
     }
 
-    // An unescaped '?' starts the query and '#' starts the fragment; neither belongs to the path
+    // An un-escaped '?' starts the query and '#' starts the fragment; neither belongs to the path
     // (RFC 3986, section 3.3). Cut before percent-decoding, so an ESCAPED '%3F' stays part of the path.
     auto delim = path.find_first_of("?#");
     if (delim != std::string::npos)
@@ -169,5 +168,3 @@ inline std::string ResourceLocationToPath(const std::string& location) {
 /// @} fmu_forge
 
 }  // namespace fmu_forge
-
-#endif

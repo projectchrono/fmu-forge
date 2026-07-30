@@ -11,7 +11,7 @@
 //
 // =============================================================================
 // Example FMU for co-simulation (FMI 3.0 standard)
-// Illustrates the FMU exporting capabilities in fmu-forge (FmuToolsExport.h)
+// Illustrates the FMU exporting capabilities in fmu-forge (FmuForgeExport.h)
 // =============================================================================
 
 #define NOMINMAX
@@ -31,7 +31,7 @@ using namespace fmu_forge::fmi3;
 
 // -----------------------------------------------------------------------------
 
-// Implement function declared in FmuToolsExport.h to create an instance of this FMU.
+// Implement function declared in FmuForgeExport.h to create an instance of this FMU.
 FmuComponentBase* fmi3::fmi3InstantiateIMPL(FmuType fmiInterfaceType,
                                             fmi3String instanceName,
                                             fmi3String instantiationToken,
